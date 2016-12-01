@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/databases/crud.db")
+DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/crud.db")
 require_relative 'models/user.rb'
 require_relative 'models/customer.rb'
 require_relative 'models/project.rb'
