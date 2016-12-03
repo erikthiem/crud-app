@@ -1,0 +1,3 @@
+Does the red >> in the database schema mean anything?
+
+What fields in the database should be required? What fields should be unique?
