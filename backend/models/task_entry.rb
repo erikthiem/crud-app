@@ -1,4 +1,4 @@
-class Task_entry
+class TaskEntry
     include DataMapper::Resource
     property :id, Serial
     belongs_to :task, :child_key => [ :task_id ]
