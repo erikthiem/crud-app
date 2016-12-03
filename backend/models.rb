@@ -7,12 +7,4 @@ require_relative 'models/project.rb'
 require_relative 'models/task.rb'
 require_relative 'models/task_entry.rb'
 DataMapper.finalize
-User.auto_upgrade!
-Customer.auto_upgrade!
-Project.auto_upgrade!
-Task.auto_upgrade!
-Task_entry.auto_upgrade!
-
-get '/' do
-    "Hello World"
-end
+DataMapper.auto_upgrade!

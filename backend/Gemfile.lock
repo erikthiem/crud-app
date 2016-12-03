@@ -85,6 +85,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.0)
   data_mapper (= 1.2.0)
   dm-sqlite-adapter (= 1.2.0)
   rerun
