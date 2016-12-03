@@ -8,7 +8,7 @@ class Project
     property :created_at, DateTime
     property :updated_at, DateTime
 
-    belongs_to :customer, :child_key => [ :customer_id ]
+    belongs_to :customer
 
     has n, :tasks
 end
