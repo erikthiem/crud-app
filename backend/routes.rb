@@ -16,6 +16,22 @@ get '/users' do
     return users.to_json
 end
 
+post '/users' do
+    username = params[:username]
+    password = params[:password]
+    email = params[:email]
+
+    user = User.create(:username => username, :password => password, :email => email) 
+
+    saveSuccessful = user.save
+
+    if saveSuccessful then
+        response.status = 201
+    else
+        response.status = 400
+    end
+end
+
 get '/projects' do
     projects = Project.all
 
