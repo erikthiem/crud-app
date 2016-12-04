@@ -50,6 +50,11 @@ def update_item(item, parameters)
     end
 end
 
+
+before do
+    content_type :json
+end
+
 require_relative "routes/user.rb"
 require_relative "routes/customer.rb"
 require_relative "routes/project.rb"
