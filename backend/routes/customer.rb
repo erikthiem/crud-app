@@ -12,12 +12,7 @@ get '/customer/:id' do
 
     customer = Customer.get(id)
 
-    if customer then
-        response.status = 200
-        return customer.to_json
-    else
-        response.status = 404
-    end
+	get_item(customer)
 end
 
 # Create a new customer
@@ -30,13 +25,7 @@ post '/customers' do
 
     customer = Customer.create(:company => company, :address => address, :city => city, :state => state, :zip => zip)
 
-    saveSuccessful = customer.save
-
-    if saveSuccessful then
-        response.status = 201
-    else
-        response.status = 400
-    end
+    create_item(customer)
 end
 
 # Modify a customer
@@ -69,13 +58,6 @@ delete '/customer/:id' do
     id = params[:id]
 
     customer = Customer.get(id)
-	p customer
 
-    if customer then
-        customer.destroy
-		p customer
-        response.status = 200
-    else
-        response.status = 404 
-    end
+    delete_item(customer)
 end

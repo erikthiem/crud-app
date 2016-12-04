@@ -14,12 +14,7 @@ get '/user/:id' do
 
     content_type :json
 
-    if user then
-        response.status = 200
-        return user.to_json
-    else
-        response.status = 404
-    end
+    get_item(user)
 end
 
 # Create a new user
@@ -30,13 +25,7 @@ post '/users' do
 
     user = User.create(:username => username, :password => password, :email => email) 
 
-    saveSuccessful = user.save
-
-    if saveSuccessful then
-        response.status = 201
-    else
-        response.status = 400
-    end
+    create_item(user)
 end
 
 # Modify a user
@@ -68,10 +57,5 @@ delete '/user/:id' do
 
     user = User.get(id)
 
-    if user then
-        user.destroy
-        response.status = 200
-    else
-        response.status = 404 
-    end
+    delete_item(user)
 end
