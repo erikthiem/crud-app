@@ -8,7 +8,7 @@ end
 
 # Get a specific user
 get '/user/:id' do
-    id = params['id']
+    id = params[:id]
 
     user = User.get(id)
 
@@ -41,7 +41,7 @@ end
 
 # Modify a user
 put '/user/:id' do
-    id = params['id']
+    id = params[:id]
     username = params[:username]
     password = params[:password]
     email = params[:email]
@@ -49,22 +49,22 @@ put '/user/:id' do
     user = User.get(id)
 
     if user then
-        updateSucessfull = user.update(:username => username, :password => password, :email => email)
+        updateSucessful = user.update(:username => username, :password => password, :email => email)
 
-        if updateSucessfull then
+        if updateSucessful then
             response.status = 200
         else
             response.status = 400
         end
 
     else
-        response.status = 400
+        response.status = 404
     end
 end
 
 # Delete a user
 delete '/user/:id' do
-    id = params['id']
+    id = params[:id]
 
     user = User.get(id)
 
