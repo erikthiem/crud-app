@@ -6,6 +6,7 @@ get '/customers' do
     return customers.to_json
 end
 
+
 # Get a specific customer
 get '/customer/:id' do
     id = params[:id]
@@ -14,6 +15,7 @@ get '/customer/:id' do
 
 	get_item(customer)
 end
+
 
 # Create a new customer
 post '/customers' do
@@ -28,6 +30,7 @@ post '/customers' do
     create_item(customer)
 end
 
+
 # Modify a customer
 put '/customer/:id' do
     id = params[:id]
@@ -37,21 +40,13 @@ put '/customer/:id' do
 	state = params[:state]
 	zip = params[:zip]
 
+    updated_parameters = {:company => company, :address => address, :city => city, :state => state, :zip => zip}
+
     customer = Customer.get(id)
 
-    if customer then
-        updateSuccessful = customer.update(:company => company, :address => address, :city => city, :state => state, :zip => zip)
-
-        if updateSuccessful then
-            response.status = 200
-        else
-            response.status = 400
-        end
-
-    else
-        response.status = 404
-    end
+    update_item(customer, updated_parameters)
 end
+
 
 # Delete a customer
 delete '/customer/:id' do
