@@ -52,8 +52,12 @@ end
 
 
 before do
+
     content_type :json
+
+    response.headers["Access-Control-Allow-Origin"] = "*"
 end
+
 
 require_relative "routes/user.rb"
 require_relative "routes/customer.rb"
