@@ -35,20 +35,11 @@ put '/user/:id' do
     password = params[:password]
     email = params[:email]
 
+    updated_parameters = {:username => username, :password => password, :email => email}
+
     user = User.get(id)
 
-    if user then
-        updateSucessful = user.update(:username => username, :password => password, :email => email)
-
-        if updateSucessful then
-            response.status = 200
-        else
-            response.status = 400
-        end
-
-    else
-        response.status = 404
-    end
+    update_item(user, updated_parameters)
 end
 
 # Delete a user
