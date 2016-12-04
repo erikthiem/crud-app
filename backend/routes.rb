@@ -42,7 +42,7 @@ def update_item(item, parameters)
         if updateSuccessful then
             response.status = STATUS_OK
         else 
-            response.status = STATUS_BAD_REQUESET
+            response.status = STATUS_BAD_REQUEST
         end
 
     else
