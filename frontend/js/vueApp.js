@@ -23,8 +23,7 @@ var userSection = new Vue({
             $.ajax({
                 url: "http://localhost:4567/users",
                 contentType: "application/json",
-                data: self.users,
-                dataType: "text json",
+                dataType: "json",
                 method: "GET",
                 success: function(data) {
                     self.users = data;
@@ -33,8 +32,35 @@ var userSection = new Vue({
                     console.log(JSON.stringify(error));
                 }
             });
-
         }
     }
+})
 
+var customerSection = new Vue({
+
+    el: '#customerSection',
+    data: {
+        customers: []
+    },
+    mounted: function() {
+        var self = this;
+        self.getCustomers();
+    },
+    methods: {
+        getCustomers: function() {
+            var self = this;
+            $.ajax({
+                url: "http://localhost:4567/customers",
+                contentType: "application/json",
+                dataType: "json",
+                method: "GET",
+                success: function(data) {
+                    self.customers = data;
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
+        }
+    }
 })
