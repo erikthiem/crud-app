@@ -1,3 +1,4 @@
+# Get all tasks
 get '/tasks' do
     tasks = Task.all
 
@@ -5,6 +6,17 @@ get '/tasks' do
     return tasks.to_json
 end
 
+# Get a specific task
+get '/task/:id' do
+    id = params[:id]
+
+    task = Task.get(id)
+
+	get_item(task)
+end
+
+
+# Create a new task
 post '/tasks' do
     task_name = params[:task_name]
     project_id = params[:project_id]
@@ -12,11 +24,29 @@ post '/tasks' do
 
     task = Task.create(:task_name => task_name, :project_id => project_id, :user_id => user_id)
 
-    saveSuccessful = task.save
+	create_item(task)
+end
 
-    if saveSuccessful then
-        response.status = 201
-    else
-        response.status = 400
-    end
+# Modify a task
+put '/task/:id' do
+    id = params[:id]
+    task_name = params[:task_name]
+    project_id = params[:project_id]
+    user_id = params[:user_id]
+
+    updated_parameters = {:task_name => task_name, :project_id => project_id, :user_id => user_id}
+
+    task = Task.get(id)
+
+    update_item(task, updated_parameters)
+end
+
+
+# Delete a task
+delete '/task/:id' do
+    id = params[:id]
+
+    task = Task.get(id)
+
+    delete_item(task)
 end
