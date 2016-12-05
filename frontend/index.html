@@ -23,40 +23,298 @@
 	<body>
         <div id="vueApp">
 
-            <h1>Users</h1>
-            <ul>
-                <li v-for="user in users">
-                    {{ user.id }}: {{ user.username }}
-                </li>
-            </ul>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="text-center">
+							{{ title }}
+						</h1>
+					</div>
+				</div>
 
-            <h1>Customers</h1>
-            <ul>
-                <li v-for="customer in customers">
-                    {{ customer.id }}: {{ customer.company }}
-                </li>
-            </ul>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>
+							Users
+						</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										ID
+									</th>
+									<th>
+										Username
+									</th>
+									<th>
+										Password
+									</th>
+									<th>
+										Email
+									</th>
+									<th>
+										Created At
+									</th>
+									<th>
+										Updated At
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="user in users">
+									<td>
+										{{ user.id }}
+									</td>
+									<td>
+										{{ user.username }}
+									</td>
+									<td>
+										{{ user.password }}
+									</td>
+									<td>
+										{{ user.email }}
+									</td>
+									<td>
+										{{ user.created_at }}
+									</td>
+									<td>
+										{{ user.updated_at }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-            <h1>Projects</h1>
-            <ul>
-                <li v-for="project in projects">
-                    {{ project.id }}: {{ project.name }}
-                </li>
-            </ul>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>
+							Customers
+						</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										ID
+									</th>
+									<th>
+										Company
+									</th>
+									<th>
+										Address
+									</th>
+									<th>
+										City
+									</th>
+									<th>
+										State
+									</th>
+									<th>
+										Zip
+									</th>
+									<th>
+										Created At
+									</th>
+									<th>
+										Updated At
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="customer in customers">
+									<td>
+										{{ customer.id }}
+									</td>
+									<td>
+										{{ customer.company }}
+									</td>
+									<td>
+										{{ customer.address }}
+									</td>
+									<td>
+										{{ customer.city }}
+									</td>
+									<td>
+										{{ customer.state }}
+									</td>
+									<td>
+										{{ customer.zip }}
+									</td>
+									<td>
+										{{ customer.created_at }}
+									</td>
+									<td>
+										{{ customer.updated_at }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-            <h1>Tasks</h1>
-            <ul>
-                <li v-for="task in tasks">
-                    {{ task.id }}: {{ task.name }}
-                </li>
-            </ul>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>
+							Projects
+						</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										ID
+									</th>
+									<th>
+										Name
+									</th>
+									<th>
+										Customer ID
+									</th>
+									<th>
+										Created At
+									</th>
+									<th>
+										Updated At
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="project in projects">
+									<td>
+										{{ project.id }}
+									</td>
+									<td>
+										{{ project.name }}
+									</td>
+									<td>
+										{{ project.customer_id }}
+									</td>
+									<td>
+										{{ project.created_at }}
+									</td>
+									<td>
+										{{ project.updated_at }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-            <h1>Task Entries</h1>
-            <ul>
-                <li v-for="task_entry in task_entries">
-                    {{ task_entry.id }}: {{ task_entry.note }}
-                </li>
-            </ul>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>
+							Tasks
+						</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										ID
+									</th>
+									<th>
+										Name
+									</th>
+									<th>
+										Project ID
+									</th>
+									<th>
+										User ID
+									</th>
+									<th>
+										Created At
+									</th>
+									<th>
+										Updated At
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="task in tasks">
+									<td>
+										{{ task.id }}
+									</td>
+									<td>
+										{{ task.name }}
+									</td>
+									<td>
+										{{ task.project_id }}
+									</td>
+									<td>
+										{{ task.user_id }}
+									</td>
+									<td>
+										{{ task.created_at }}
+									</td>
+									<td>
+										{{ task.updated_at }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<h1>
+							Task Entries
+						</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										ID
+									</th>
+									<th>
+										Note
+									</th>
+									<th>
+										Duration
+									</th>
+									<th>
+										Task ID
+									</th>
+									<th>
+										Start Time
+									</th>
+									<th>
+										Created At
+									</th>
+									<th>
+										Updated At
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="task_entry in task_entries">
+									<td>
+										{{ task_entry.id }}
+									</td>
+									<td>
+										{{ task_entry.note }}
+									</td>
+									<td>
+										{{ task_entry.duration }}
+									</td>
+									<td>
+										{{ task_entry.task_id }}
+									</td>
+									<td>
+										{{ task_entry.start_time }}
+									</td>
+									<td>
+										{{ task_entry.created_at }}
+									</td>
+									<td>
+										{{ task_entry.updated_at }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
 
 
         </div>

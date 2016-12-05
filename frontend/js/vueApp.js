@@ -4,6 +4,7 @@ var vueApp = new Vue({
     
     el: '#vueApp',
     data: {
+        title: "Admin Page",
         users: [],
         customers: [],
         projects: [],
