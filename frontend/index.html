@@ -23,26 +23,42 @@
 	<body>
         <div id="vueApp">
 
-            <h1>{{ message }}</h1>
-
-        </div>
-        
-        <div id="userSection">
             <h1>Users</h1>
             <ul>
                 <li v-for="user in users">
-                    {{ user.username }}
+                    {{ user.id }}: {{ user.username }}
                 </li>
             </ul>
-        </div>
 
-        <div id="customerSection">
             <h1>Customers</h1>
             <ul>
                 <li v-for="customer in customers">
-                    {{ customer.company }}
+                    {{ customer.id }}: {{ customer.company }}
                 </li>
             </ul>
+
+            <h1>Projects</h1>
+            <ul>
+                <li v-for="project in projects">
+                    {{ project.id }}: {{ project.project_name }}
+                </li>
+            </ul>
+
+            <h1>Tasks</h1>
+            <ul>
+                <li v-for="task in tasks">
+                    {{ task.id }}: {{ task.task_name }}
+                </li>
+            </ul>
+
+            <h1>Task Entries</h1>
+            <ul>
+                <li v-for="task_entry in task_entries">
+                    {{ task_entry.id }}: {{ task_entry.note }}
+                </li>
+            </ul>
+
+
         </div>
         
 
