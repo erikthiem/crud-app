@@ -19,10 +19,10 @@ end
 # Create a new project
 post '/projects' do
 
-    project_name = params[:project_name]
+    name = params[:name]
     customer_id = params[:customer_id]
 
-    project = Project.create(:project_name => project_name, :customer_id => customer_id)
+    project = Project.create(:name => name, :customer_id => customer_id)
     create_item(project)
 end
 
@@ -31,10 +31,10 @@ end
 put '/project/:id' do
 
     id = params[:id]
-    project_name = params[:project_name]
+    name = params[:name]
     customer_id = params[:customer_id]
 
-    updated_parameters = {:project_name => project_name, :customer_id => customer_id}
+    updated_parameters = {:name => name, :customer_id => customer_id}
 
     project = Project.get(id)
     update_item(project, updated_parameters)

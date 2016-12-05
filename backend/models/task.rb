@@ -3,7 +3,7 @@ class Task
 
     property :id, Serial
 
-    property :task_name, String
+    property :name, String
 
     property :created_at, DateTime
     property :updated_at, DateTime

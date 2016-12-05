@@ -3,7 +3,7 @@ class Project
 
     property :id, Serial
 
-    property :project_name, String
+    property :name, String
 
     property :created_at, DateTime
     property :updated_at, DateTime

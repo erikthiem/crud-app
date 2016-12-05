@@ -19,11 +19,11 @@ end
 # Create a new task
 post '/tasks' do
 
-    task_name = params[:task_name]
+    name = params[:name]
     project_id = params[:project_id]
     user_id = params[:user_id]
 
-    task = Task.create(:task_name => task_name, :project_id => project_id, :user_id => user_id)
+    task = Task.create(:name => name, :project_id => project_id, :user_id => user_id)
 	create_item(task)
 end
 
@@ -32,11 +32,11 @@ end
 put '/task/:id' do
 
     id = params[:id]
-    task_name = params[:task_name]
+    name = params[:name]
     project_id = params[:project_id]
     user_id = params[:user_id]
 
-    updated_parameters = {:task_name => task_name, :project_id => project_id, :user_id => user_id}
+    updated_parameters = {:name => name, :project_id => project_id, :user_id => user_id}
 
     task = Task.get(id)
     update_item(task, updated_parameters)
