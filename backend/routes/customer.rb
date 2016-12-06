@@ -19,6 +19,9 @@ end
 # Create a new customer
 post '/customers' do
 
+    puts "New Customer Stuff:"
+    puts params[:company]
+
     company = params[:company]
     address = params[:address]
     city = params[:city]

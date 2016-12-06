@@ -17,6 +17,7 @@ def create_item(item)
 
     if saveSuccessful then
         response.status = STATUS_CREATED
+        return item.to_json
     else
         response.status = STATUS_BAD_REQUEST
     end

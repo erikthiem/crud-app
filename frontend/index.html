@@ -58,6 +58,8 @@
 									<th>
 										Updated At
 									</th>
+									<th>
+									</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -79,6 +81,34 @@
 									</td>
 									<td>
 										{{ user.updated_at }}
+									</td>
+									<td>
+										<button class="btn" v-on:click="deleteUser(user.id)">
+											<span class="glyphicon glyphicon-minus"></span>
+										</button>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+									</td>
+									<td>
+										<input v-model="new_user.username">
+									</td>
+									<td>
+										<input v-model="new_user.password">
+									</td>
+									<td>
+										<input v-model="new_user.email">
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+										<button class="btn" v-on:click="addNewUser()">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
 									</td>
 								</tr>
 							</tbody>
@@ -147,6 +177,27 @@
 										{{ customer.updated_at }}
 									</td>
 								</tr>
+
+								<tr>
+									<td>
+										<span class="glyphicon glyphicon-plus"></span>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+								</tr>
+
 							</tbody>
 						</table>
 					</div>

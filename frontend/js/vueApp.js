@@ -6,10 +6,19 @@ var vueApp = new Vue({
     data: {
         title: "Admin Page",
         users: [],
+        new_user: {},
+
         customers: [],
+        new_customer: {},
+
         projects: [],
+        new_project: {},
+
         tasks: [],
-        task_entries: []
+        new_task: {},
+
+        task_entries: [],
+        new_task_entry: {}
     },
 
     mounted: function() {
@@ -39,6 +48,42 @@ var vueApp = new Vue({
             });
         },
 
+        addNewUser: function() {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/users",
+                data: self.new_user,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+                    self.new_user = {};
+                    self.getUsers();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_user = {};
+                    self.getUsers();
+                }
+            });
+        },
+
+        deleteUser: function(id) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/user/" + id,
+                dataType: "json",
+                method: "DELETE",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                    self.getUsers();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getUsers();
+                }
+            });
+        },
+
         getCustomers: function() {
             var self = this;
             $.ajax({
@@ -48,6 +93,23 @@ var vueApp = new Vue({
                 method: "GET",
                 success: function(data) {
                     self.customers = data;
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
+        },
+
+        saveNewCustomer: function(customer) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/customers",
+                data: customer,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+                    var newCustomer = data;
+                    console.log(newCustomer);
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
