@@ -5,6 +5,7 @@ var vueApp = new Vue({
     el: '#vueApp',
     data: {
         title: "Admin Page",
+
         users: [],
         new_user: {},
 
@@ -100,19 +101,38 @@ var vueApp = new Vue({
             });
         },
 
-        saveNewCustomer: function(customer) {
+        addNewCustomer: function() {
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/customers",
-                data: customer,
+                data: self.new_customer,
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
-                    var newCustomer = data;
-                    console.log(newCustomer);
+                    self.new_customer = {};
+                    self.getCustomers();
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
+                    self.new_customer = {};
+                    self.getCustomers();
+                }
+            });
+        },
+
+        deleteCustomer: function(id) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/customer/" + id,
+                dataType: "json",
+                method: "DELETE",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                    self.getCustomers();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getCustomers();
                 }
             });
         },

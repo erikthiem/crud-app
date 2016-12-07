@@ -148,6 +148,8 @@
 									<th>
 										Updated At
 									</th>
+                                    <th>
+                                    </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -176,25 +178,40 @@
 									<td>
 										{{ customer.updated_at }}
 									</td>
+                                    <td>
+										<button class="btn" v-on:click="deleteCustomer(customer.id)">
+											<span class="glyphicon glyphicon-minus"></span>
+										</button>
+                                    </td>
 								</tr>
 
 								<tr>
+                                    <td>
+                                    </td>
 									<td>
-										<span class="glyphicon glyphicon-plus"></span>
+                                        <input v-model="new_customer.company">
+									</td>
+									<td>
+                                        <input v-model="new_customer.address">
+									</td>
+									<td>
+                                        <input v-model="new_customer.city">
+									</td>
+									<td>
+                                        <input v-model="new_customer.state">
+									</td>
+									<td>
+                                        <input v-model="new_customer.zip">
 									</td>
 									<td>
 									</td>
 									<td>
 									</td>
 									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
+										<button class="btn" v-on:click="addNewCustomer()">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+	
 									</td>
 								</tr>
 
