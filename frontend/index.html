@@ -83,7 +83,7 @@
 										{{ user.updated_at }}
 									</td>
 									<td>
-										<button class="btn" v-on:click="deleteUser(user.id)">
+										<button class="btn" v-on:click="deleteUser(user)">
 											<span class="glyphicon glyphicon-minus"></span>
 										</button>
 									</td>
@@ -179,7 +179,7 @@
 										{{ customer.updated_at }}
 									</td>
                                     <td>
-										<button class="btn" v-on:click="deleteCustomer(customer.id)">
+										<button class="btn" v-on:click="deleteCustomer(customer)">
 											<span class="glyphicon glyphicon-minus"></span>
 										</button>
                                     </td>
@@ -243,6 +243,8 @@
 									<th>
 										Updated At
 									</th>
+                                    <th>
+                                    </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -262,7 +264,35 @@
 									<td>
 										{{ project.updated_at }}
 									</td>
+                                    <td>
+                                        <button class="btn" v-on:click="deleteProject(project)">
+											<span class="glyphicon glyphicon-minus"></span>
+										</button>
+                                    </td>
 								</tr>
+
+								<tr>
+                                    <td>
+                                    </td>
+									<td>
+                                        <input v-model="new_project.name">
+									</td>
+									<td>
+                                        <input v-model="new_project.customer_id">
+									</td>
+									<td>
+									</td>
+                                    <td>
+                                    </td>
+									<td>
+										<button class="btn" v-on:click="addNewProject()">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+	
+									</td>
+								</tr>
+
+
 							</tbody>
 						</table>
 					</div>
@@ -294,6 +324,8 @@
 									<th>
 										Updated At
 									</th>
+                                    <th>
+                                    </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -315,6 +347,35 @@
 									</td>
 									<td>
 										{{ task.updated_at }}
+									</td>
+                                    <td>
+                                        <button class="btn" v-on:click="deleteTask(task)">
+										    <span class="glyphicon glyphicon-minus"></span>
+										</button>
+                                    </td>
+								</tr>
+
+								<tr>
+                                    <td>
+                                    </td>
+									<td>
+                                        <input v-model="new_task.name">
+									</td>
+									<td>
+                                        <input v-model="new_task.project_id">
+									</td>
+									<td>
+                                        <input v-model="new_task.user_id">
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+										<button class="btn" v-on:click="addNewTask()">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+	
 									</td>
 								</tr>
 							</tbody>
@@ -351,6 +412,8 @@
 									<th>
 										Updated At
 									</th>
+                                    <th>
+                                    </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -376,7 +439,38 @@
 									<td>
 										{{ task_entry.updated_at }}
 									</td>
+                                    <td>
+                                        <button class="btn" v-on:click="deleteTaskEntry(task_entry)">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </td>
 								</tr>
+
+								<tr>
+                                    <td>
+                                    </td>
+									<td>
+                                        <input v-model="new_task_entry.note">
+									</td>
+									<td>
+									</td>
+									<td>
+                                        <input v-model="new_task_entry.task_id">
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+                                    <td>
+                                    </td>
+									<td>
+										<button class="btn" v-on:click="addNewTaskEntry()">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+									</td>
+								</tr>
+	
+
 							</tbody>
 						</table>
 					</div>

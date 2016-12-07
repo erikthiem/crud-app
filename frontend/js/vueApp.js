@@ -68,10 +68,10 @@ var vueApp = new Vue({
             });
         },
 
-        deleteUser: function(id) {
+        deleteUser: function(user) {
             var self = this;
             $.ajax({
-                url: apiBaseUrl + "/user/" + id,
+                url: apiBaseUrl + "/user/" + user.id,
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {
@@ -120,10 +120,10 @@ var vueApp = new Vue({
             });
         },
 
-        deleteCustomer: function(id) {
+        deleteCustomer: function(customer) {
             var self = this;
             $.ajax({
-                url: apiBaseUrl + "/customer/" + id,
+                url: apiBaseUrl + "/customer/" + customer.id,
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {
@@ -153,6 +153,43 @@ var vueApp = new Vue({
             });
         },
 
+        addNewProject: function() {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/projects",
+                data: self.new_project,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+                    self.new_project = {};
+                    self.getProjects();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_project = {};
+                    self.getProjects();
+                }
+            });
+        },
+
+        deleteProject: function(project) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/project/" + project.id,
+                dataType: "json",
+                method: "DELETE",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                    self.getProjects();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getProjects();
+                }
+            });
+        },
+
+
         getTasks: function() {
             var self = this;
             $.ajax({
@@ -169,6 +206,43 @@ var vueApp = new Vue({
             });
         },
 
+        addNewTask: function() {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/tasks",
+                data: self.new_task,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+                    self.new_task = {};
+                    self.getTasks();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_task = {};
+                    self.getTasks();
+                }
+            });
+        },
+
+        deleteTask: function(task) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/task/" + task.id,
+                dataType: "json",
+                method: "DELETE",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                    self.getTasks();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getTasks();
+                }
+            });
+        },
+
+
         getTaskEntries: function() {
             var self = this;
             $.ajax({
@@ -183,8 +257,42 @@ var vueApp = new Vue({
                     console.log(JSON.stringify(error));
                 }
             });
-        }
+        },
 
+        addNewTaskEntry: function() {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/task_entries",
+                data: self.new_task_entry,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+                    self.new_task_entry = {};
+                    self.getTaskEntries();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_task_entry = {};
+                    self.getTaskEntries();
+                }
+            });
+        },
 
+        deleteTaskEntry: function(task_entry) {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/task_entry/" + task_entry.id,
+                dataType: "json",
+                method: "DELETE",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                    self.getTaskEntries();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getTaskEntries();
+                }
+            });
+        },
     }
 })
