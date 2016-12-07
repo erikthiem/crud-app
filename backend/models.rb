@@ -6,5 +6,6 @@ require_relative 'models/customer.rb'
 require_relative 'models/project.rb'
 require_relative 'models/task.rb'
 require_relative 'models/task_entry.rb'
+require_relative 'models/session.rb'
 DataMapper.finalize
 DataMapper.auto_upgrade!

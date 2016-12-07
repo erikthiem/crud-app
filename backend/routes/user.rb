@@ -1,3 +1,5 @@
+require_relative "../controllers/authentication.rb"
+
 # Get all users
 get '/users' do
 
@@ -50,4 +52,44 @@ delete '/user/:id' do
 
     user = User.get(id)
     delete_item(user)
+end
+
+# Login
+post '/user/login' do
+    
+    username = params[:username]
+    password = params[:password]
+
+    if (validUser(username, password)) then
+
+        code = generateSessionCode()
+
+        session = Session.create(:username => username, :code => code) 
+        create_item(session)
+
+        response.status = 200
+
+        codeObject = {'code': code}
+
+        return codeObject.to_json
+    else
+        response.status = 401
+    end
+end
+
+# Logout
+post '/user/logout' do
+    
+    session_code = params[:session_code]
+
+    session = Session.first(:code => session_code)
+
+    if session then
+
+        session.destroy
+        response.status = 200
+    
+    else
+        response.status = 400
+    end
 end
