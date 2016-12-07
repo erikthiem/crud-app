@@ -19,7 +19,10 @@ var vueApp = new Vue({
         new_task: {},
 
         task_entries: [],
-        new_task_entry: {}
+        new_task_entry: {},
+
+        user_login_info: {},
+        session: {logged_in: false, username: "", code: ""}
     },
 
     mounted: function() {
@@ -81,6 +84,54 @@ var vueApp = new Vue({
                 error: function(error) {
                     console.log(JSON.stringify(error));
                     self.getUsers();
+                }
+            });
+        },
+
+        loginUser: function() {
+            var self = this;
+            $.ajax({
+                url: apiBaseUrl + "/user/login",
+                dataType: "json",
+                method: "POST",
+                data: self.user_login_info,
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+
+                    var user = self.user_login_info.username;
+                    var code = data.code;
+
+                    self.session = {logged_in: true, username: user, code: code}
+
+                    console.log(self.session)
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
+        },
+
+        logoutUser: function() {
+            var self = this;
+
+            var code = self.session.code; 
+            var session = {"session_code": code};
+
+            console.log(self.session.logged_in);
+
+            $.ajax({
+                url: apiBaseUrl + "/user/logout",
+                dataType: "json",
+                method: "POST",
+                data: session,
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+
+                    self.session.logged_in = false;
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+
                 }
             });
         },

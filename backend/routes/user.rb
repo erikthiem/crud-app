@@ -79,6 +79,8 @@ end
 
 # Logout
 post '/user/logout' do
+
+    puts params
     
     session_code = params[:session_code]
 
@@ -88,6 +90,8 @@ post '/user/logout' do
 
         session.destroy
         response.status = 200
+
+        return "".to_json
     
     else
         response.status = 400
