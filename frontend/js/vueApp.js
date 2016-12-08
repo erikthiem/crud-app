@@ -22,27 +22,58 @@ var vueApp = new Vue({
         new_task_entry: {},
 
         user_login_info: {},
+        //session: {logged_in: false, username: "", code: "fdb07f371598ee84fc22cf49f6c5bc6d"}
         session: {logged_in: false, username: "", code: ""}
+
     },
 
     mounted: function() {
 
         var self = this;
-        self.getUsers();
-        self.getCustomers();
-        self.getProjects();
-        self.getTasks();
-        self.getTaskEntries();
+        self.getAllData();
     },
 
     methods: {
+        
+        getAllData: function() {
+            var self = this;
+
+            self.getUsers();
+            self.getCustomers();
+            self.getProjects();
+            self.getTasks();
+            self.getTaskEntries();
+        },
+
+        clearLocalData: function() {
+            var self = this;
+
+            self.users = [];
+            self.new_user = {};
+
+            self.customers = [];
+            self.new_customer = {};
+
+            self.projects = [];
+            self.new_project = {};
+
+            self.tasks = [];
+            self.new_task = {};
+
+            self.task_entries = [];
+            self.new_task_entry = {};
+
+        },
 
         getUsers: function() {
             var self = this;
+
             $.ajax({
-                url: apiBaseUrl + "/users", contentType: "application/json",
+                url: apiBaseUrl + "/users",
+                contentType: "application/json",
                 dataType: "json",
                 method: "GET",
+                data: {"session_code": self.session.code},
                 success: function(data) {
                     self.users = data;
                 },
@@ -56,7 +87,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/users",
-                data: self.new_user,
+                data: Object.assign(self.new_user, {"session_code": self.session.code}),
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
@@ -75,8 +106,10 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/user/" + user.id,
+                data: {"session_code": self.session.code},
                 dataType: "json",
                 method: "DELETE",
+                contentType: "application/json",
                 success: function(data) {
                     console.log(JSON.stringify(data));
                     self.getUsers();
@@ -101,9 +134,12 @@ var vueApp = new Vue({
                     var user = self.user_login_info.username;
                     var code = data.code;
 
-                    self.session = {logged_in: true, username: user, code: code}
+                    self.session = {logged_in: true, username: user, code: code};
 
-                    console.log(self.session)
+                    self.user_login_info = {};
+
+                    self.getAllData();
+
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
@@ -128,6 +164,11 @@ var vueApp = new Vue({
                     console.log(JSON.stringify(data));
 
                     self.session.logged_in = false;
+                    self.session.username = "";
+                    self.session.code = "";
+
+                    self.clearLocalData();
+
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
@@ -141,6 +182,7 @@ var vueApp = new Vue({
             $.ajax({
                 url: apiBaseUrl + "/customers",
                 contentType: "application/json",
+                data: {"session_code": self.session.code},
                 dataType: "json",
                 method: "GET",
                 success: function(data) {
@@ -156,7 +198,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/customers",
-                data: self.new_customer,
+                data: Object.assign(self.new_customer, {"session_code": self.session.code}),
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
@@ -175,6 +217,8 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/customer/" + customer.id,
+                data: {"session_code": self.session.code},
+                contentType: "application/json",
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {
@@ -192,6 +236,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/projects",
+                data: {"session_code": self.session.code},
                 contentType: "application/json",
                 dataType: "json",
                 method: "GET",
@@ -208,7 +253,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/projects",
-                data: self.new_project,
+                data: Object.assign(self.new_project, {"session_code": self.session.code}),
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
@@ -227,6 +272,8 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/project/" + project.id,
+                data: {"session_code": self.session.code},
+                contentType: "application/json",
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {
@@ -245,6 +292,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/tasks",
+                data: {"session_code": self.session.code},
                 contentType: "application/json",
                 dataType: "json",
                 method: "GET",
@@ -261,7 +309,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/tasks",
-                data: self.new_task,
+                data: Object.assign(self.new_task, {"session_code": self.session.code}),
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
@@ -280,6 +328,8 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/task/" + task.id,
+                data: {"session_code": self.session.code},
+                contentType: "application/json",
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {
@@ -298,6 +348,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/task_entries",
+                data: {"session_code": self.session.code},
                 contentType: "application/json",
                 dataType: "json",
                 method: "GET",
@@ -314,7 +365,7 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/task_entries",
-                data: self.new_task_entry,
+                data: Object.assign(self.new_task_entry, {"session_code": self.session.code}),
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
@@ -333,6 +384,8 @@ var vueApp = new Vue({
             var self = this;
             $.ajax({
                 url: apiBaseUrl + "/task_entry/" + task_entry.id,
+                data: {"session_code": self.session.code},
+                contentType: "application/json",
                 dataType: "json",
                 method: "DELETE",
                 success: function(data) {

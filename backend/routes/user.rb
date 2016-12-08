@@ -56,7 +56,7 @@ end
 
 # Login
 post '/user/login' do
-    
+
     username = params[:username]
     password = params[:password]
 

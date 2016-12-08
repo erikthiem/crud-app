@@ -29,6 +29,7 @@ def delete_item(item)
     if item then
         item.destroy
         response.status = STATUS_OK
+        return "".to_json
     else
         response.status = STATUS_NOT_FOUND 
     end
@@ -42,6 +43,7 @@ def update_item(item, parameters)
 
         if updateSuccessful then
             response.status = STATUS_OK
+            return "".to_json
         else 
             response.status = STATUS_BAD_REQUEST
         end
@@ -51,12 +53,30 @@ def update_item(item, parameters)
     end
 end
 
+def authenticated_user(session_code)
+    session = Session.first(:code => session_code)
+    
+    if session then
+        return true
+    else
+        return false
+    end
+end
+
 
 before do
 
     content_type :json
-
     response.headers["Access-Control-Allow-Origin"] = "*"
+
+    pass if request.path_info == "/user/login"
+
+    session_code = params[:session_code]
+
+    if not authenticated_user(session_code) then
+        status STATUS_UNAUTHORIZED
+    end
+
 end
 
 
