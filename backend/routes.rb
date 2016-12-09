@@ -73,8 +73,15 @@ before do
 
     session_code = params[:session_code]
 
+    puts session_code
+
+    a = authenticated_user(session_code)
+    puts a
+
     if not authenticated_user(session_code) then
-        status STATUS_UNAUTHORIZED
+        puts "This is hit"
+        response.status = STATUS_UNAUTHORIZED
+        halt 401
     end
 
 end
