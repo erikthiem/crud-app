@@ -22,7 +22,6 @@ var vueApp = new Vue({
         new_task_entry: {},
 
         user_login_info: {},
-        //session: {logged_in: false, username: "", code: "fdb07f371598ee84fc22cf49f6c5bc6d"}
         session: {logged_in: false, username: "", code: ""}
 
     },
@@ -215,6 +214,7 @@ var vueApp = new Vue({
 
         deleteCustomer: function(customer) {
             var self = this;
+            console.log("Session code: " + self.session.code);
             $.ajax({
                 url: apiBaseUrl + "/customer/" + customer.id,
                 data: {"session_code": self.session.code},
