@@ -60,329 +60,339 @@
                     </div>
 
                     <template v-if="session.logged_in">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>
-                                Users
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Username
-                                        </th>
-                                        <th>
-                                            Password
-                                        </th>
-                                        <th>
-                                            Email
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="user in users">
-                                        <td>
-                                            {{ user.username }}
-                                        </td>
-                                        <td>
-                                            {{ user.password }}
-                                        </td>
-                                        <td>
-                                            {{ user.email }}
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="deleteUser(user)">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    Users
+                                </h1>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Username
+                                                </th>
+                                                <th>
+                                                    Password
+                                                </th>
+                                                <th>
+                                                    Email
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="user in users">
+                                                <td>
+                                                    {{ user.username }}
+                                                </td>
+                                                <td>
+                                                    {{ user.password }}
+                                                </td>
+                                                <td>
+                                                    {{ user.email }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="deleteUser(user)">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <input v-model="new_user.username">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_user.password">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_user.email">
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="addNewUser()">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <tr>
+                                                <td>
+                                                    <input v-model="new_user.username">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_user.password">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_user.email">
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="addNewUser()">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>
-                                Customers
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Company
-                                        </th>
-                                        <th>
-                                            Address
-                                        </th>
-                                        <th>
-                                            City
-                                        </th>
-                                        <th>
-                                            State
-                                        </th>
-                                        <th>
-                                            Zip
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="customer in customers">
-                                        <td>
-                                            {{ customer.company }}
-                                        </td>
-                                        <td>
-                                            {{ customer.address }}
-                                        </td>
-                                        <td>
-                                            {{ customer.city }}
-                                        </td>
-                                        <td>
-                                            {{ customer.state }}
-                                        </td>
-                                        <td>
-                                            {{ customer.zip }}
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="deleteCustomer(customer)">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    Customers
+                                </h1>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Company
+                                                </th>
+                                                <th>
+                                                    Address
+                                                </th>
+                                                <th>
+                                                    City
+                                                </th>
+                                                <th>
+                                                    State
+                                                </th>
+                                                <th>
+                                                    Zip
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="customer in customers">
+                                                <td>
+                                                    {{ customer.company }}
+                                                </td>
+                                                <td>
+                                                    {{ customer.address }}
+                                                </td>
+                                                <td>
+                                                    {{ customer.city }}
+                                                </td>
+                                                <td>
+                                                    {{ customer.state }}
+                                                </td>
+                                                <td>
+                                                    {{ customer.zip }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="deleteCustomer(customer)">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <input v-model="new_customer.company">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_customer.address">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_customer.city">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_customer.state">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_customer.zip">
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="addNewCustomer()">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-        
-                                        </td>
-                                    </tr>
+                                            <tr>
+                                                <td>
+                                                    <input v-model="new_customer.company">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_customer.address">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_customer.city">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_customer.state">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_customer.zip">
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="addNewCustomer()">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                
+                                                </td>
+                                            </tr>
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>
-                                Projects
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Customer ID
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="project in projects">
-                                        <td>
-                                            {{ project.name }}
-                                        </td>
-                                        <td>
-                                            {{ project.customer_id }}
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="deleteProject(project)">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    Projects
+                                </h1>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Customer ID
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="project in projects">
+                                                <td>
+                                                    {{ project.name }}
+                                                </td>
+                                                <td>
+                                                    {{ project.customer_id }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="deleteProject(project)">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <input v-model="new_project.name">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_project.customer_id">
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="addNewProject()">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-        
-                                        </td>
-                                    </tr>
+                                            <tr>
+                                                <td>
+                                                    <input v-model="new_project.name">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_project.customer_id">
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="addNewProject()">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                
+                                                </td>
+                                            </tr>
 
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>
-                                Tasks
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Project ID
-                                        </th>
-                                        <th>
-                                            User ID
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="task in tasks">
-                                        <td>
-                                            {{ task.name }}
-                                        </td>
-                                        <td>
-                                            {{ task.project_id }}
-                                        </td>
-                                        <td>
-                                            {{ task.user_id }}
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="deleteTask(task)">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    Tasks
+                                </h1>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Project ID
+                                                </th>
+                                                <th>
+                                                    User ID
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="task in tasks">
+                                                <td>
+                                                    {{ task.name }}
+                                                </td>
+                                                <td>
+                                                    {{ task.project_id }}
+                                                </td>
+                                                <td>
+                                                    {{ task.user_id }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="deleteTask(task)">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <input v-model="new_task.name">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_task.project_id">
-                                        </td>
-                                        <td>
-                                            <input v-model="new_task.user_id">
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="addNewTask()">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-        
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <tr>
+                                                <td>
+                                                    <input v-model="new_task.name">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_task.project_id">
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_task.user_id">
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="addNewTask()">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>
-                                Task Entries
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Note
-                                        </th>
-                                        <th>
-                                            Duration
-                                        </th>
-                                        <th>
-                                            Task ID
-                                        </th>
-                                        <th>
-                                            Start Time
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="task_entry in task_entries">
-                                        <td>
-                                            {{ task_entry.note }}
-                                        </td>
-                                        <td>
-                                            {{ task_entry.duration }}
-                                        </td>
-                                        <td>
-                                            {{ task_entry.task_id }}
-                                        </td>
-                                        <td>
-                                            {{ task_entry.start_time }}
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="deleteTaskEntry(task_entry)">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>
+                                    Task Entries
+                                </h1>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Note
+                                                </th>
+                                                <th>
+                                                    Duration
+                                                </th>
+                                                <th>
+                                                    Task ID
+                                                </th>
+                                                <th>
+                                                    Start Time
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="task_entry in task_entries">
+                                                <td>
+                                                    {{ task_entry.note }}
+                                                </td>
+                                                <td>
+                                                    {{ task_entry.duration }}
+                                                </td>
+                                                <td>
+                                                    {{ task_entry.task_id }}
+                                                </td>
+                                                <td>
+                                                    {{ task_entry.start_time }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="deleteTaskEntry(task_entry)">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <input v-model="new_task_entry.note">
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <input v-model="new_task_entry.task_id">
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <button class="btn" v-on:click="addNewTaskEntry()">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-        
+                                            <tr>
+                                                <td>
+                                                    <input v-model="new_task_entry.note">
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    <input v-model="new_task_entry.task_id">
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    <button class="btn" v-on:click="addNewTaskEntry()">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
                     </template>
 
