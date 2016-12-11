@@ -38,7 +38,7 @@
 
                     <div id="loginForm" class="row">
                         <div class="col-md-12">
-                            <template v-if="session.logged_in">
+                            <template v-if="logged_in">
                                 <div class="form text-center">
                                     <button v-on:click="logoutUser()" class="btn btn-default">Logout</button>
                                 </div>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <template v-if="session.logged_in">
+                    <template v-if="logged_in">
                         <div class="row results-section">
                             <div class="col-md-12">
                                 <h2>

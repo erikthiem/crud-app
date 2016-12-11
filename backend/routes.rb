@@ -1,5 +1,13 @@
 require_relative "status_codes.rb"
 
+set :public_folder, File.dirname(__FILE__) + '/../frontend/'
+
+get '/' do
+    content_type "text/html"
+    puts "Public folder: " , settings.public_folder
+    send_file File.expand_path('index.html', '../frontend/')
+end
+
 def get_item(item)
 
     if item then
@@ -66,22 +74,23 @@ end
 
 before do
 
-    content_type :json
     response.headers["Access-Control-Allow-Origin"] = "*"
 
-    pass if request.path_info == "/user/login"
+    if request.request_method != "OPTIONS"
 
-    session_code = params[:session_code]
+        pass if request.path_info == "/user/login" || request.path_info == "/"
 
-    puts session_code
+        content_type :json
 
-    a = authenticated_user(session_code)
-    puts a
+        session_code = session["code"]
 
-    if not authenticated_user(session_code) then
-        puts "This is hit"
-        response.status = STATUS_UNAUTHORIZED
-        halt 401
+        puts "session_code: " , session_code
+
+        if not authenticated_user(session_code) then
+            response.status = STATUS_UNAUTHORIZED
+            halt 401
+        end
+
     end
 
 end

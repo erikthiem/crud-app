@@ -1,5 +1,7 @@
 require_relative "../controllers/authentication.rb"
 
+require 'json'
+
 # Get all users
 get '/users' do
 
@@ -64,14 +66,15 @@ post '/user/login' do
 
         code = generateSessionCode()
 
-        session = Session.create(:username => username, :code => code) 
-        create_item(session)
+        session[:code] = code
+
+        saved_session = Session.create(:username => username, :code => code) 
+        create_item(saved_session)
+
+        @session = session
 
         response.status = 200
-
-        codeObject = {'code': code}
-
-        return codeObject.to_json
+        return {}.to_json
     else
         response.status = 401
     end
@@ -80,18 +83,16 @@ end
 # Logout
 post '/user/logout' do
 
-    puts params
-    
-    session_code = params[:session_code]
+    saved_session = Session.first(:code => session["code"])
 
-    session = Session.first(:code => session_code)
+    if saved_session then
 
-    if session then
+        saved_session.destroy
+        session["code"] = nil
 
-        session.destroy
         response.status = 200
 
-        return "".to_json
+        return {}.to_json
     
     else
         response.status = 400
