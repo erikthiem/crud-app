@@ -78,7 +78,7 @@ before do
 
     if request.request_method != "OPTIONS"
 
-        pass if request.path_info == "/user/login" || request.path_info == "/"
+        pass if request.path_info == "/user/login" || request.path_info == "/" || request.path_info =="/users/post" || request.path_info == "/isloggedin"
 
         content_type :json
 

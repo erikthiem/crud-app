@@ -29,6 +29,8 @@ var vueApp = new Vue({
     mounted: function() {
 
         var self = this;
+
+        self.isLoggedIn();
     },
 
     methods: {
@@ -61,6 +63,26 @@ var vueApp = new Vue({
             self.task_entries = [];
             self.new_task_entry = {};
 
+        },
+
+        isLoggedIn: function() {
+            var self = this;
+
+            $.ajax({
+                url: apiBaseUrl + "/isloggedin",
+                contentType: "application/json",
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+                    self.logged_in = data.logged_in;
+
+                    if (self.logged_in)
+                        self.getAllData();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
         },
 
         getUsers: function() {

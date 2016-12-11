@@ -98,3 +98,17 @@ post '/user/logout' do
         response.status = 400
     end
 end
+
+get '/isloggedin' do
+
+    content_type :json
+
+    puts 'test this happens'
+    saved_session = Session.first(:code => session["code"])
+
+    if saved_session then
+        return {:logged_in => true}.to_json
+    else
+        return {:logged_in => false}.to_json
+    end
+end
