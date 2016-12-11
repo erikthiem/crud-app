@@ -242,7 +242,11 @@
                                                     <input v-model="new_project.name">
                                                 </td>
                                                 <td>
-                                                    <input v-model="new_project.customer_id">
+													<select v-model="new_project.customer_id">
+												  		<option v-for="customer in customers" v-bind:value="customer.id">
+													  		{{ customer.company }}
+														</option>
+													</select>
                                                 </td>
                                                 <td class="text-right">
                                                     <button class="btn" v-on:click="addNewProject()">
