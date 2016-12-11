@@ -22,8 +22,15 @@ post '/projects' do
     name = params[:name]
     customer_id = params[:customer_id]
 
-    project = Project.create(:name => name, :customer_id => customer_id)
-    create_item(project)
+    customer = Customer.first(:id => customer_id)
+
+    if customer then
+
+        project = Project.create(:name => name, :customer_id => customer_id)
+        create_item(project)
+    else
+        response.status = STATUS_BAD_REQUEST
+    end
 end
 
 

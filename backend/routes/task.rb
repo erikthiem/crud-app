@@ -23,8 +23,18 @@ post '/tasks' do
     project_id = params[:project_id]
     user_id = params[:user_id]
 
-    task = Task.create(:name => name, :project_id => project_id, :user_id => user_id)
-	create_item(task)
+    project = Project.first(:id => project_id)
+    user = User.first(:id => user_id)
+
+    if project and user then
+
+        task = Task.create(:name => name, :project_id => project_id, :user_id => user_id)
+        create_item(task)
+
+    else
+
+        response.status = STATUS_BAD_REQUEST
+    end
 end
 
 

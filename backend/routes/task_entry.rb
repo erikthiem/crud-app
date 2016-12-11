@@ -22,8 +22,15 @@ post '/task_entries' do
     note = params[:note]
     task_id = params[:task_id]
 
-    task_entry = TaskEntry.create(:note => note, :task_id => task_id)
-	create_item(task_entry)
+    task = Task.first(:id => task_id)
+
+    if task then
+
+        task_entry = TaskEntry.create(:note => note, :task_id => task_id)
+        create_item(task_entry)
+    else
+        response.status = STATUS_BAD_REQUEST
+    end
 end
 
 
