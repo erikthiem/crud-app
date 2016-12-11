@@ -6,7 +6,8 @@ gem 'data_mapper', '1.2.0'
 gem 'bcrypt', '~>3.1.0'
 
 group :production do
-    gem "pg"
+    gem 'pg'
+    gem 'dm-postgres-adapter'
 end
 
 group :development, :test do
