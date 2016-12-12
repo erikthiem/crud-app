@@ -142,7 +142,7 @@
 											<span>Project: </span>
 											<select v-model="new_task_entry.project">
 												<option v-for="project in projects" v-bind:value="project">
-													{{ project.name }}
+													{{ project.name }} for '{{ _.get(_.find(customers, { 'id': project.customer_id}), 'company') }}'
 												</option>
 											</select>
 										</div>
