@@ -4,10 +4,7 @@ var vueApp = new Vue({
     
     el: '#vueApp',
     data: {
-        title: "Admin Page",
-
-        users: [],
-        new_user: {},
+        title: "Widget Confabulators Time Tracker",
 
         customers: [],
         new_customer: {},
@@ -38,7 +35,6 @@ var vueApp = new Vue({
         getAllData: function() {
             var self = this;
 
-            self.getUsers();
             self.getCustomers();
             self.getProjects();
             self.getTasks();
@@ -47,9 +43,6 @@ var vueApp = new Vue({
 
         clearLocalData: function() {
             var self = this;
-
-            self.users = [];
-            self.new_user = {};
 
             self.customers = [];
             self.new_customer = {};
@@ -81,61 +74,6 @@ var vueApp = new Vue({
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
-                }
-            });
-        },
-
-        getUsers: function() {
-            var self = this;
-
-            $.ajax({
-                url: apiBaseUrl + "/users",
-                contentType: "application/json",
-                dataType: "json",
-                method: "GET",
-                success: function(data) {
-                    self.users = data;
-                },
-                error: function(error) {
-                    console.log(JSON.stringify(error));
-                }
-            });
-        },
-
-        addNewUser: function() {
-            var self = this;
-            $.ajax({
-                url: apiBaseUrl + "/users",
-                data: self.new_user,
-                dataType: "json",
-                method: "POST",
-                success: function(data) {
-                    self.new_user = {};
-                    self.getUsers();
-                },
-                error: function(error) {
-                    console.log(JSON.stringify(error));
-                    self.new_user = {};
-                    self.getUsers();
-                }
-            });
-        },
-
-        deleteUser: function(user) {
-            var self = this;
-
-            $.ajax({
-                url: apiBaseUrl + "/user/" + user.id,
-                dataType: "json",
-                method: "DELETE",
-                contentType: "application/json",
-                success: function(data) {
-                    console.log(JSON.stringify(data));
-                    self.getUsers();
-                },
-                error: function(error) {
-                    console.log(JSON.stringify(error));
-                    self.getUsers();
                 }
             });
         },
