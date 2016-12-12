@@ -309,7 +309,11 @@
                                                     <input v-model="new_task.project_id">
                                                 </td>
                                                 <td>
-                                                    <input v-model="new_task.user_id">
+													<select v-model="new_task.user_id">
+												  		<option v-for="user in users" v-bind:value="user.id">
+													  		{{ user.username }}
+														</option>
+													</select>
                                                 </td>
                                                 <td class="text-right">
                                                     <button class="btn" v-on:click="addNewTask()">
