@@ -2,7 +2,15 @@
 get '/tasks' do
 
     tasks = Task.all
-    return tasks.to_json
+
+    tasks.each do |task|
+        
+        task.task_entries = TaskEntry.all(:task_id => task.id)
+
+    end
+
+
+    return tasks.to_json(:methods => [:task_entries])
 end
 
 

@@ -68,7 +68,18 @@
                                        <tbody>
                                             <tr v-for="task in tasks">
                                                 <td>
-                                                    {{ task.name }} (project {{ task.project_id }})
+                                                    {{ task.name }} (project {{ _.get(_.find(projects, { 'id': task.project_id}), 'name')}})
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr v-for="task_entry in task.task_entries">
+
+                                                                <td>
+                                                                    {{ task_entry.note }}
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </td>
                                                 <td class="text-right">
                                                     <button class="btn">
@@ -76,75 +87,6 @@
                                                     </button>
                                                     <button class="btn">
                                                         Edit
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row results-section">
-                            <div class="col-md-12">
-                                <h2>
-                                    Task Entries
-                                </h2>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    Note
-                                                </th>
-                                                <th>
-                                                    Duration
-                                                </th>
-                                                <th>
-                                                    Task ID
-                                                </th>
-                                                <th>
-                                                    Start Time
-                                                </th>
-                                                <th>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="task_entry in task_entries">
-                                                <td>
-                                                    {{ task_entry.note }}
-                                                </td>
-                                                <td>
-                                                    {{ task_entry.duration }}
-                                                </td>
-                                                <td>
-                                                    {{ task_entry.task_id }}
-                                                </td>
-                                                <td>
-                                                    {{ task_entry.start_time }}
-                                                </td>
-                                                <td class="text-right">
-                                                    <button class="btn" v-on:click="deleteTaskEntry(task_entry)">
-                                                        <span class="glyphicon glyphicon-minus"></span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <input v-model="new_task_entry.note">
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                    <input v-model="new_task_entry.task_id">
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td class="text-right">
-                                                    <button class="btn" v-on:click="addNewTaskEntry()">
-                                                        <span class="glyphicon glyphicon-plus"></span>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -163,6 +105,9 @@
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+
+        <!-- Lodash -->
+        <script src="js/lodash.js"></script>
 
         <!-- VueApp -->
         <script src="js/vueApp.js"></script>
