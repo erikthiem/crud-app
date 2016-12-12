@@ -75,6 +75,15 @@ def authenticated_user(session_code)
     end
 end
 
+def getCurrentUser()
+    session_code = session["code"]
+    current_session = Session.first(:code => session_code)
+
+    user = User.first(:username => current_session.username)
+
+    return user
+end
+
 
 before do
 
@@ -87,8 +96,6 @@ before do
         content_type :json
 
         session_code = session["code"]
-
-        puts "session_code: " , session_code
 
         if not authenticated_user(session_code) then
             response.status = STATUS_UNAUTHORIZED

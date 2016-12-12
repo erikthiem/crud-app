@@ -1,7 +1,7 @@
-# Get all tasks
+# Get all tasks for the logged-in user
 get '/tasks' do
 
-    tasks = Task.all
+    tasks = Task.all(:user_id => getCurrentUser().id)
 
     tasks.each do |task|
         

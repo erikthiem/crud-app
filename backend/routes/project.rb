@@ -1,11 +1,21 @@
-# Get all projects
+# Get all projects (with associated tasks) assigned to the current user
 get '/projects' do
 
-    projects = Project.all
+    user = getCurrentUser()
+
+    # All tasks assigned to a user
+    tasks = Task.all(:user_id => user.id)
+
+    projects = []
+
+    # The projects for each of the tasks
+    tasks.each do |task|
+        projects << task.project
+    end
 
     projects.each do |project|
 
-        project.tasks = Task.all(:project_id => project.id)
+        project.tasks = Task.all(:project_id => project.id, :user_id => user.id)
 
     end
 
