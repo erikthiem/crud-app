@@ -69,6 +69,7 @@
                                             <tr v-for="task in tasks">
                                                 <td>
                                                     {{ task.name }} (project {{ _.get(_.find(projects, { 'id': task.project_id}), 'name')}})
+													<div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>
                                                             <tr v-for="task_entry in task.task_entries">
@@ -77,10 +78,21 @@
                                                                     {{ task_entry.note }}
                                                                 </td>
 
+																<td>
+																	{{ task_entry.duration}} Seconds
+																</td>
+
                                                                 <td class="text-right">
-                                                                    <button class="btn">
-                                                                        Start
-                                                                    </button>
+                                                                    <template v-if="task_entry.in_progress">
+                                                                        <button class="btn" v-on:click="stopTaskEntry(task_entry)">
+                                                                            Stop
+                                                                        </button>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        <button class="btn" v-on:click="startTaskEntry(task_entry)">
+                                                                            Start
+                                                                        </button>
+                                                                    </template>
                                                                     <button class="btn">
                                                                         Edit
                                                                     </button>
@@ -90,6 +102,7 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+													</div>
                                                 </td>
                                             </tr>
                                         </tbody>

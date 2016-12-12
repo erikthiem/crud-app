@@ -70,7 +70,7 @@ put '/task_entry/:id/start' do
 
         start_time = Time.now
 
-        updated_parameters = {:start_time => start_time}
+        updated_parameters = {:start_time => start_time, :in_progress => true}
         update_item(task_entry, updated_parameters)
     else
         response.status = STATUS_BAD_REQUEST
@@ -96,7 +96,7 @@ put '/task_entry/:id/stop' do
             duration = existing_duration + duration
         end
 
-        updated_parameters = {:duration => duration}
+        updated_parameters = {:duration => duration, :in_progress => false}
         update_item(task_entry, updated_parameters)
 
     else

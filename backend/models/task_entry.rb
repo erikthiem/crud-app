@@ -10,5 +10,7 @@ class TaskEntry
     property :created_at, DateTime
     property :updated_at, DateTime
 
+    property :in_progress, Boolean, :default => false
+
     belongs_to :task
 end

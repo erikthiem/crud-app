@@ -316,6 +316,45 @@ var vueApp = new Vue({
             });
         },
 
+		startTaskEntry: function(task_entry) {
+            var self = this;
+
+            $.ajax({ 
+                url: apiBaseUrl + "/task_entry/" + task_entry.id + "/start",
+                dataType: "json",
+                method: "PUT",
+                success: function(data) {
+					self.getTasks();
+                    self.getTaskEntries();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_task_entry = {projects: []};
+                    self.getTaskEntries();
+                }
+            });
+        },
+
+       stopTaskEntry: function(task_entry) {
+            var self = this;
+
+            $.ajax({
+                url: apiBaseUrl + "/task_entry/" + task_entry.id + "/stop",
+                dataType: "json",
+                method: "PUT",
+                success: function(data) {
+					self.getTasks();
+                    self.getTaskEntries();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_task_entry = {projects: []};
+                    self.getTaskEntries();
+                }
+            });
+        },
+
+
         deleteTaskEntry: function(task_entry) {
             var self = this;
             $.ajax({
