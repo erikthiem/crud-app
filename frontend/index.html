@@ -93,12 +93,10 @@
                                                                             Start
                                                                         </button>
                                                                     </template>
-                                                                    <button class="btn">
+                                                                    <button type="button" class="btn" data-toggle="modal" data-target="#editTaskEntryModal" v-on:click="filloutEditTimeEntryModal(task_entry)">
                                                                         Edit
                                                                     </button>
                                                                 </td>
-
-
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -113,14 +111,14 @@
 
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskEntryModal">
 								  New Entry
 								</button>
 							</div>
 						</div>
 
-           				<!-- Modal -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+           				<!-- New Task Entry Modal -->
+						<div class="modal fade" id="newTaskEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  	<div class="modal-dialog" role="document">
 								<div class="modal-content">
 							  		<div class="modal-header">
@@ -159,6 +157,32 @@
 								</div>
 						  	</div>
 						</div> 
+
+           				<!-- Edit Task Entry Modal -->
+						<div class="modal fade" id="editTaskEntryModal" tabindex="-1" role="dialog">
+						  	<div class="modal-dialog" role="document">
+								<div class="modal-content">
+							  		<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Time Entry Duration Manual Override</h4>
+							  		</div>
+								  	<div class="modal-body">
+
+										<div id="dropdown-notes">
+											<span>Duration: </span><input v-model="updated_task_entry.duration">
+										</div>
+
+								  	</div>
+								  	<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="setTaskEntryDuration(updated_task_entry.id, updated_task_entry.duration)">Save</button>
+										<button type="button" class="btn" data-dismiss="modal">Cancel</button>
+									</div>
+								</div>
+						  	</div>
+						</div> 
+
 
                     </template>
                 </div>

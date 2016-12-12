@@ -110,6 +110,9 @@ end
 put '/task_entry/:id/set_duration' do
     id = params[:id]
     duration = params[:duration]
+
+    puts "id: ", id
+    puts "duration: ", duration
     
     task_entry = TaskEntry.first(:id => id)
     

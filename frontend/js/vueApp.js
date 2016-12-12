@@ -17,10 +17,12 @@ var vueApp = new Vue({
 
         task_entries: [],
         new_task_entry: {project: []},
+        updated_task_entry: {},
 
         user_login_info: {},
-        logged_in: false
+        logged_in: false,
 
+        editTimeEntryModal_task_entry: {project: {}, task: {}},
     },
 
     mounted: function() {
@@ -372,6 +374,29 @@ var vueApp = new Vue({
                 }
             });
         },
+
+        setTaskEntryDuration: function(task_entry_id, duration) {
+            var self = this;
+
+            var data = {'duration' : duration};
+
+            console.log("task_entry_id: " + task_entry_id);
+
+            $.ajax({
+                url: apiBaseUrl + "/task_entry/" + task_entry_id + "/set_duration",
+                dataType: "json",
+                data: data,
+                method: "PUT",
+                success: function(data) {
+                    self.getTasks();
+                    self.getTaskEntries();
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.getTaskEntries();
+                }
+            });
+        },
         
         newEntryStartTimer: function() {
             var self = this;
@@ -408,6 +433,12 @@ var vueApp = new Vue({
                     self.getTaskEntries();
                 }
             });
+        },
+
+        filloutEditTimeEntryModal: function(time_entry) {
+            var self = this;
+
+            self.updated_task_entry = time_entry;
         }
     }
 })
