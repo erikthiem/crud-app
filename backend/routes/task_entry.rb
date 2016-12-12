@@ -124,3 +124,29 @@ put '/task_entry/:id/set_duration' do
         response.status = STATUS_BAD_REQUEST
     end  
 end
+
+def to_csv(model, records)
+    CSV.generate do |csv|
+        records.each do |record|
+            csv << record.attributes.values
+        end
+    end
+end
+
+def exportTaskEntries()
+
+    task_entries = TaskEntry.all()
+
+    data = to_csv(TaskEntry, task_entries)
+
+    return data
+end
+
+# Export task entries
+get '/task_entries/export' do
+    data = exportTaskEntries()
+
+    content_type "application/csv"
+
+    return data
+end

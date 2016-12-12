@@ -439,6 +439,23 @@ var vueApp = new Vue({
             var self = this;
 
             self.updated_task_entry = time_entry;
+        },
+
+        exportTimeEntries: function() {
+            var self = this;
+
+            $.ajax({
+                url: apiBaseUrl + "/task_entries/export",
+                dataType: "text/json",
+                method: "GET",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            });
         }
     }
 })

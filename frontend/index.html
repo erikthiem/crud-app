@@ -61,6 +61,22 @@
 
                     <template v-if="logged_in">
 
+						<div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskEntryModal">
+                                  New Entry
+                                </button>
+
+								<a href="/task_entries/export">
+									<button type="button" class="btn btn-warning" data-target="#newTaskEntryModal"> 
+									  Export Time Entries
+									</button>
+								</a>
+ 
+                            </div>
+                        </div>
+
+
                         <div class="row results-section">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -108,14 +124,6 @@
                                 </div>
                             </div>
                         </div>
-
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskEntryModal">
-								  New Entry
-								</button>
-							</div>
-						</div>
 
            				<!-- New Task Entry Modal -->
 						<div class="modal fade" id="newTaskEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
