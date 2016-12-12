@@ -4,8 +4,12 @@ set :public_folder, File.dirname(__FILE__) + '/../frontend/'
 
 get '/' do
     content_type "text/html"
-    puts "Public folder: " , settings.public_folder
     send_file File.expand_path('index.html', '../frontend/')
+end
+
+get '/admin' do
+    content_type "text/html"
+    send_file File.expand_path('index.html', '../frontend_admin/')
 end
 
 def get_item(item)
