@@ -1,3 +1,5 @@
+require 'time_difference'
+
 # Get all task entries
 get '/task_entries' do
 
@@ -55,4 +57,67 @@ delete '/task_entry/:id' do
 
     task_entry = TaskEntry.get(id)
     delete_item(task_entry)
+end
+
+# Start a task entry
+put '/task_entry/:id/start' do
+
+    id = params[:id]
+
+    task_entry = TaskEntry.first(:id => id)
+
+    if task_entry then
+
+        start_time = Time.now
+
+        updated_parameters = {:start_time => start_time}
+        update_item(task_entry, updated_parameters)
+    else
+        response.status = STATUS_BAD_REQUEST
+    end
+end
+
+# Stop a task entry
+put '/task_entry/:id/stop' do
+
+    id = params[:id]
+
+    task_entry = TaskEntry.first(:id => id)
+    start_time = task_entry.start_time
+    existing_duration = task_entry.duration
+
+    if task_entry and start_time then
+
+        stop_time = Time.now
+
+        duration = TimeDifference.between(start_time, stop_time).in_seconds
+
+        if existing_duration then
+            duration = existing_duration + duration
+        end
+
+        updated_parameters = {:duration => duration}
+        update_item(task_entry, updated_parameters)
+
+    else
+        response.status = STATUS_BAD_REQUEST
+    end
+        
+
+end
+
+# Set a task entry's duration manually
+put '/task_entry/:id/set_duration' do
+    id = params[:id]
+    duration = params[:duration]
+    
+    task_entry = TaskEntry.first(:id => id)
+    
+    if task_entry then
+        
+        updated_parameters = {:duration => duration, :start_time => nil}
+        update_item(task_entry, updated_parameters)
+    else
+        response.status = STATUS_BAD_REQUEST
+    end  
 end

@@ -4,6 +4,7 @@ gem 'sinatra', '1.4.7'
 gem 'rerun'
 gem 'data_mapper', '1.2.0'
 gem 'bcrypt', '~>3.1.0'
+gem 'time_difference', '~>0.5.0'
 
 group :production do
     gem 'pg'
