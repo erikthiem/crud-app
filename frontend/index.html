@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<title>Admin Page</title>
+		<title>Widget Confabulators Time Tracker</title>
 
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -64,9 +64,6 @@
                         <div class="row results-section">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-									  New Entry
-									</button>
                                     <table class="table">
                                        <tbody>
                                             <tr v-for="task in tasks">
@@ -100,6 +97,14 @@
                                 </div>
                             </div>
                         </div>
+
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+								  New Entry
+								</button>
+							</div>
+						</div>
 
            				<!-- Modal -->
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
