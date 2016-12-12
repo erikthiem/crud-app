@@ -14,5 +14,6 @@ end
 group :development, :test do
     gem 'sqlite3', '~>1.3.0'
     gem 'dm-sqlite-adapter', '1.2.0'
+    gem 'rack-test', '~>0.6.0'
 end
 
