@@ -95,7 +95,9 @@
                                                                 </td>
 
 																<td>
-																	{{ task_entry.duration}} Seconds
+																	<span v-if="task_entry.duration">
+																		{{ (parseFloat(task_entry.duration)/60/60).toFixed(2)}} Hours
+																	</span>
 																</td>
 
                                                                 <td class="text-right">
