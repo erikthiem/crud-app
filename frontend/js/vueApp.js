@@ -417,6 +417,7 @@ var vueApp = new Vue({
                         method: "PUT",
                         success: function(data) {
                             self.new_task_entry = {};
+                            self.getTasks();
                             self.getTaskEntries();
                         },
                         error: function(error) {
