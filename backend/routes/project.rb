@@ -2,7 +2,14 @@
 get '/projects' do
 
     projects = Project.all
-    return projects.to_json
+
+    projects.each do |project|
+
+        project.tasks = Task.all(:project_id => project.id)
+
+    end
+
+    return projects.to_json(:methods => [:tasks])
 end
 
 

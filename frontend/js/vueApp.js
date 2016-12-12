@@ -16,7 +16,7 @@ var vueApp = new Vue({
         new_task: {},
 
         task_entries: [],
-        new_task_entry: {},
+        new_task_entry: {project: []},
 
         user_login_info: {},
         logged_in: false
@@ -297,18 +297,20 @@ var vueApp = new Vue({
 
         addNewTaskEntry: function() {
             var self = this;
+
+            var task_entry = {'note': self.new_task_entry.note, 'task_id': self.new_task_entry.task.id, 'project_id': self.new_task_entry.project.id};
+
             $.ajax({
                 url: apiBaseUrl + "/task_entries",
-                data: self.new_task_entry,
+                data: task_entry,
                 dataType: "json",
                 method: "POST",
                 success: function(data) {
-                    self.new_task_entry = {};
                     self.getTaskEntries();
                 },
                 error: function(error) {
                     console.log(JSON.stringify(error));
-                    self.new_task_entry = {};
+                    self.new_task_entry = {projects: []};
                     self.getTaskEntries();
                 }
             });
@@ -331,5 +333,42 @@ var vueApp = new Vue({
                 }
             });
         },
+        
+        newEntryStartTimer: function() {
+            var self = this;
+
+            var task_entry = {'note': self.new_task_entry.note, 'task_id': self.new_task_entry.task.id, 'project_id': self.new_task_entry.project.id};
+
+            $.ajax({
+                url: apiBaseUrl + "/task_entries",
+                data: task_entry,
+                dataType: "json",
+                method: "POST",
+                success: function(data) {
+
+                    var task_entry = data;
+
+                    $.ajax({
+                        url: apiBaseUrl + "/task_entry/" + task_entry.id + "/start",
+                        dataType: "json",
+                        method: "PUT",
+                        success: function(data) {
+                            self.new_task_entry = {};
+                            self.getTaskEntries();
+                        },
+                        error: function(error) {
+                            console.log(JSON.stringify(error));
+                            self.new_task_entry = {};
+                            self.getTaskEntries();
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.log(JSON.stringify(error));
+                    self.new_task_entry = {};
+                    self.getTaskEntries();
+                }
+            });
+        }
     }
 })

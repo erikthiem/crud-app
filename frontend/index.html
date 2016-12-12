@@ -120,7 +120,7 @@
 										<div class="dropdown">
 											<span>Project: </span>
 											<select v-model="new_task_entry.project">
-												<option v-for="project in projects" v-bind:value="project.id">
+												<option v-for="project in projects" v-bind:value="project">
 													{{ project.name }}
 												</option>
 											</select>
@@ -128,7 +128,7 @@
 										<div class="dropdown">
 											<span>Task: </span>
 											<select v-model="new_task_entry.task">
-												<option v-for="task in tasks" v-bind:value="task.id">
+												<option v-for="task in new_task_entry.project.tasks" v-bind:value="task">
 													{{ task.name }}
 												</option>
 											</select>
@@ -139,8 +139,8 @@
 										</div>
 								  	</div>
 								  	<div class="modal-footer">
-										<button type="button" class="btn btn-primary" data-dismiss="modal">Start Timer</button>
-										<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="newEntryStartTimer()">Start Timer</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="addNewTaskEntry()" >Save changes</button>
 										<button type="button" class="btn" data-dismiss="modal">Cancel</button>
 									</div>
 								</div>
