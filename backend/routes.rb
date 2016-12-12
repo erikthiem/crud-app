@@ -9,7 +9,7 @@ end
 
 get '/admin' do
     content_type "text/html"
-    send_file File.expand_path('index.html', '../frontend_admin/')
+    send_file File.expand_path('admin.html', '../frontend/')
 end
 
 def get_item(item)
