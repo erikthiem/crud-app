@@ -133,9 +133,20 @@ def to_csv(model, records)
     end
 end
 
-def exportTaskEntries()
+def csvTaskEntries()
 
-    task_entries = TaskEntry.all()
+    user = getCurrentUser()
+
+    tasks = Task.all(:user_id => user.id)
+
+    task_entries = []
+
+    tasks.each do |task|
+
+        task.task_entries.each do |task_entry|
+            task_entries << task_entry
+        end
+    end
 
     data = to_csv(TaskEntry, task_entries)
 
@@ -144,7 +155,7 @@ end
 
 # Export task entries
 get '/task_entries/export' do
-    data = exportTaskEntries()
+    data = csvTaskEntries()
 
     content_type "application/csv"
 
