@@ -16,7 +16,7 @@ var vueApp = new Vue({
         new_task: {},
 
         task_entries: [],
-        new_task_entry: {project: []},
+        new_task_entry: {project: {}},
         updated_task_entry: {},
 
         user_login_info: {},
@@ -56,7 +56,6 @@ var vueApp = new Vue({
             self.new_task = {};
 
             self.task_entries = [];
-            self.new_task_entry = {};
 
         },
 
